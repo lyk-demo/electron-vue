@@ -5154,6 +5154,13 @@ image-size@~0.5.0:
   resolved "https://registry.npm.taobao.org/image-size/download/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
 
+img-loader@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/img-loader/download/img-loader-3.0.1.tgz#c279691c0a9e6b94fa7d8318d2a6596d98bcee78"
+  integrity sha1-wnlpHAqea5T6fYMY0qZZbZi87ng=
+  dependencies:
+    loader-utils "^1.1.0"
+
 immediate@~3.0.5:
   version "3.0.6"
   resolved "https://registry.npm.taobao.org/immediate/download/immediate-3.0.6.tgz#9db1dbd0faf8de6fbe0f5dd5e56bb606280de69b"
@@ -8075,11 +8082,6 @@ regexpu-core@^4.5.4:
     regjsparser "^0.6.0"
     unicode-match-property-ecmascript "^1.0.4"
     unicode-match-property-value-ecmascript "^1.1.0"
-
-register-service-worker@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.npm.taobao.org/register-service-worker/download/register-service-worker-1.6.2.tgz#9297e54c205c371c6e49bfa88f6997e8dd315f4c"
-  integrity sha1-kpflTCBcNxxuSb+oj2mX6N0xX0w=
 
 registry-auth-token@^3.0.1:
   version "3.4.0"

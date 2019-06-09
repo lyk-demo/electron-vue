@@ -1,6 +1,7 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, Tray, Menu, NativeImage } from 'electron'
+import path from 'path'
 import {
   createProtocol,
   installVueDevtools
@@ -17,8 +18,11 @@ protocol.registerSchemesAsPrivileged([{ scheme: 'app', privileges: { secure: tru
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1366,
+    height: 768,
+    minWidth: 1366,
+    // autoHideMenuBar: true,
+    // skipTaskbar: true,
     webPreferences: {
       nodeIntegration: true
     }
@@ -39,6 +43,34 @@ function createWindow () {
   })
 }
 
+function initTrayIcon () {
+  const tray = new Tray(path.join(process.cwd(), 'public/favicon.ico'))
+  // const tray = new Tray(path.join(process.cwd(), 'src/assets/icon.png'))
+  // const tray = new Tray(path.join(process.resourcesPath, 'public/favicon.ico'))
+
+  const trayContextMenu = Menu.buildFromTemplate([
+    {
+      label: '打开',
+      click: () => {
+        // win.show()
+      }
+    }, {
+      label: '退出',
+      click: () => {
+        win.webContents.send(app.quit, 'quit')
+      }
+    }
+  ])
+  tray.setToolTip('Tools')
+
+  tray.on('click', () => {
+    win.show()
+  })
+  tray.on('right-click', () => {
+    tray.popUpContextMenu(trayContextMenu)
+  })
+}
+
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
@@ -53,6 +85,7 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
     createWindow()
+    // initTrayIcon()
   }
 })
 
@@ -69,6 +102,7 @@ app.on('ready', async () => {
     }
   }
   createWindow()
+  initTrayIcon()
 })
 
 // Exit cleanly on request from parent process in development mode.

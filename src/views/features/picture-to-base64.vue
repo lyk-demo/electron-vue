@@ -1,6 +1,6 @@
 <template>
   <div class="picture-to-base64">
-    <el-upload class="img-upload" drag :auto-upload="false" :on-change="handleChange" :file-list="fileList" ref="upload" action="a">
+    <el-upload class="img-upload" drag :auto-upload="false" :on-change="handleChange" :file-list="fileList" ref="upload" accept="image/*" action="a">
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">
         将文件拖到此处，或
