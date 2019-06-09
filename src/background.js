@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow, ipcMain } from 'electron'
+import { app, protocol, BrowserWindow } from 'electron'
 import {
   createProtocol,
   installVueDevtools
@@ -85,10 +85,3 @@ if (isDevelopment) {
     })
   }
 }
-
-ipcMain.on('ondragstart', (event, filePath) => {
-  event.sender.startDrag({
-    file: filePath,
-    icon: '/path/to/icon.png'
-  })
-})

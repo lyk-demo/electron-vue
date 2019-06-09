@@ -9,18 +9,17 @@
 
 <script>
 export default {
-  name: "Aside",
-  data() {
-    return { isCollapse: false };
+  name: 'Aside',
+  data () {
+    return { isCollapse: false }
   },
   methods: {
-    handleSelect(key, keyPath) {
-      console.info(key, keyPath);
+    handleSelect (key, keyPath) {
+      console.info(key, keyPath)
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
 </style>
-
