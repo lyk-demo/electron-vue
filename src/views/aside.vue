@@ -1,7 +1,12 @@
 <template>
-  <el-menu default-active="1" :router="true" :collapse="isCollapse" @select="handleSelect">
+  <el-menu
+    default-active="1"
+    :router="true"
+    :collapse="isCollapse"
+    @select="handleSelect"
+  >
     <el-menu-item index="PictureToBase64">
-      <i class="el-icon-menu"></i>
+      <i class="el-icon-menu" />
       <span slot="title">图片转base64</span>
     </el-menu-item>
   </el-menu>

@@ -5,9 +5,9 @@ import zh_CN from 'element-ui/lib/locale/lang/zh-CN'
 
 Vue.use(VueI18n)
 
-function loadLocaleMessages () {
+function loadLocaleMessages() {
   const locales = require.context('./locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
-  const messages = { en, zh_CN }
+  let messages: { [key: string]: any } = { en, zh_CN }
   locales.keys().forEach(key => {
     const matched = key.match(/([A-Za-z0-9-_]+)\./i)
     if (matched && matched.length > 1) {

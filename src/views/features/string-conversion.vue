@@ -1,7 +1,5 @@
 <template>
-  <div class="string-conversion">
-
-  </div>
+  <div class="string-conversion" />
 </template>
 
 <script>

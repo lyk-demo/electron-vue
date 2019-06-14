@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <el-container>
-      <el-header></el-header>
+      <el-header />
       <el-container>
         <el-aside width="200px">
-          <custom-aside/>
+          <custom-aside />
         </el-aside>
         <el-main>
-          <router-view/>
+          <router-view />
         </el-main>
       </el-container>
     </el-container>
