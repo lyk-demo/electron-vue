@@ -15,14 +15,13 @@
 </template>
 
 <script>
-import CustomAside from './views/aside'
+import CustomAside from './views/aside';
 export default {
   name: 'App',
   components: {
-    CustomAside
-  }
-}
+    CustomAside,
+  },
+};
 </script>
 
-<style lang="less">
-</style>
+<style lang="less"></style>

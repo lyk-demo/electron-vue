@@ -19,11 +19,7 @@
     </el-upload>
 
     <div class="right-warrper">
-      <el-input
-        type="textarea"
-        :rows="8"
-        v-model="base64"
-      />
+      <el-input type="textarea" :rows="8" v-model="base64" />
       <el-button
         @click="clipboard(base64)"
         class="copy-btn"
@@ -37,64 +33,66 @@
 </template>
 
 <script>
-import { readFile } from 'fs'
-import { lookup } from 'mime-types'
+import { readFile } from 'fs';
+import { lookup } from 'mime-types';
 
 export default {
   name: 'PictureToBase64',
-  data () {
+  data() {
     return {
       fileList: [],
-      base64: ''
-    }
+      base64: '',
+    };
   },
   methods: {
-    submitUpload () { },
-    handleChange (file, fileList) {
-      this.readFile(file.raw.path)
+    submitUpload() {},
+    handleChange(file, fileList) {
+      this.readFile(file.raw.path);
     },
-    readFile (path) {
+    readFile(path) {
       readFile(path, (err, data) => {
         if (err) {
-          return console.error(err)
+          return console.error(err);
         }
         this.base64 = `data:${lookup(path)};base64,${Buffer.from(data).toString(
-          'base64'
-        )}`
-      })
+          'base64',
+        )}`;
+      });
     },
-    getContainer () {
-      var $copy = document.getElementById('$XECopy')
+    getContainer() {
+      var $copy = document.getElementById('$XECopy');
       if (!$copy) {
-        $copy = document.createElement('input')
-        $copy.id = '$XECopy'
-        $copy.style['width'] = '48px'
-        $copy.style['height'] = '12px'
-        $copy.style['position'] = 'fixed'
-        $copy.style['z-index'] = '0'
-        $copy.style['left'] = '-500px'
-        $copy.style['top'] = '-500px'
-        document.body.appendChild($copy)
+        $copy = document.createElement('input');
+        $copy.id = '$XECopy';
+        $copy.style['width'] = '48px';
+        $copy.style['height'] = '12px';
+        $copy.style['position'] = 'fixed';
+        $copy.style['z-index'] = '0';
+        $copy.style['left'] = '-500px';
+        $copy.style['top'] = '-500px';
+        document.body.appendChild($copy);
       }
-      return $copy
+      return $copy;
     },
-    clipboard (content) {
-      var $copy = this.getContainer()
-      var value = content === null || content === undefined ? '' : '' + content
+    clipboard(content) {
+      var $copy = this.getContainer();
+      var value = content === null || content === undefined ? '' : '' + content;
       try {
-        $copy.value = value
-        $copy.focus()
-        $copy.setSelectionRange(0, value.length)
+        $copy.value = value;
+        $copy.focus();
+        $copy.setSelectionRange(0, value.length);
         this.$notify({
           title: 'Copy成功!',
-          type: 'success'
-        })
-        return document.execCommand('copy', true)
-      } catch (e) { }
-      return false
-    }
-  }
-}
+          type: 'success',
+        });
+        return document.execCommand('copy', true);
+      } catch (e) {
+        global.console.error(e);
+      }
+      return false;
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
