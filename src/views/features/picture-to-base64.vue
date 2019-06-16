@@ -33,9 +33,10 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue';
 import { readFile } from 'fs';
 import { lookup } from 'mime-types';
-import { from } from 'buffer';
+import buffer from 'buffer';
 
 type file = {
   raw: {
@@ -43,7 +44,7 @@ type file = {
   };
 };
 
-export default {
+export default Vue.extend({
   name: 'PictureToBase64',
   data() {
     return {
@@ -57,13 +58,13 @@ export default {
       this.readFile(file.raw.path);
     },
     readFile(path: string) {
-      readFile(path, (err: string, data: string) => {
+      readFile(path, (err: string, data: any) => {
         if (err) {
           return console.error(err);
         }
-        this.base64 = `data:${lookup(path)};base64,${from(data).toString(
-          'base64',
-        )}`;
+        this.base64 = `data:${lookup(path)};base64,${buffer.Buffer.from(
+          data,
+        ).toString('base64')}`;
       });
     },
     getContainer() {
@@ -98,7 +99,7 @@ export default {
       return false;
     },
   },
-};
+});
 </script>
 
 <style lang="less" scoped>

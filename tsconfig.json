@@ -12,6 +12,7 @@
     "baseUrl": ".",
     "types": ["webpack-env", "node"],
     "typeRoots": ["node_modules/@types"],
+    "experimentalDecorators": true,
     "paths": {
       "@/*": ["src/*"]
     },
