@@ -22,6 +22,6 @@ module.exports = {
     'space-before-function-paren': 'off',
   },
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: '@typescript-eslint/parser'
   },
 };

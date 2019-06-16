@@ -20,10 +20,12 @@
     "vue": "^2.6.10",
     "vue-i18n": "^8.0.0",
     "vue-router": "^3.0.3",
+    "vue-typed-mixins": "^0.1.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",
+    "@types/node": "^12.0.8",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-plugin-typescript": "^3.8.1",

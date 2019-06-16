@@ -1,0 +1,43 @@
+{
+  // "vetur.format.defaultFormatter.ts": "vscode-typescript",
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.format.insertSpaceAfterTypeAssertion": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "prettier.htmlWhitespaceSensitivity": "strict",
+  "prettier.singleQuote": true,
+  "javascript.implicitProjectConfig.experimentalDecorators": true,
+  "prettier.eslintIntegration": true,
+  "prettier.jsxBracketSameLine": true,
+  "prettier.jsxSingleQuote": true,
+  // vetur configuration
+  "vetur.format.defaultFormatter.html": "prettier",
+  // prettier configuration
+  "prettier.disableLanguages": ["vue"],
+  "eslint.autoFixOnSave": true,
+  // "javascript.validate.enable": false
+  // 为了避免和 eslint 冲突，讲编辑器默认的代码检查规则关闭（如果开启了）
+  "editor.formatOnSave": false,
+  "javascript.format.enable": false,
+  "eslint.packageManager": "yarn",
+  "git.autofetch": true,
+  "javascript.implicitProjectConfig.checkJs": true,
+  "eslint.validate": [
+    "javascript",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    "vue-html",
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    },
+    "typescriptreact",
+    "typescript"
+  ]
+}

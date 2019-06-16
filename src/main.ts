@@ -6,6 +6,7 @@ import i18n from './i18n';
 import 'normalize.css';
 import ElementUI from 'element-ui';
 import './styles.scss';
+import './styles/index.less';
 
 Vue.use(ElementUI);
 

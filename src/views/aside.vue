@@ -9,6 +9,10 @@
       <i class="el-icon-menu" />
       <span slot="title">图片转base64</span>
     </el-menu-item>
+    <el-menu-item index="StringConversion">
+      <i class="el-icon-menu" />
+      <span slot="title">字符串转码</span>
+    </el-menu-item>
   </el-menu>
 </template>
 
@@ -19,9 +23,7 @@ export default {
     return { isCollapse: false };
   },
   methods: {
-    handleSelect(key, keyPath) {
-      console.info(key, keyPath);
-    },
+    handleSelect(key, keyPath) {},
   },
 };
 </script>

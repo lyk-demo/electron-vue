@@ -28,5 +28,13 @@ export default new Router({
           /* webpackChunkName: "PictureToBase64" */ './views/features/picture-to-base64.vue'
         ),
     },
+    {
+      path: '/StringConversion',
+      name: 'StringConversion',
+      component: () =>
+        import(
+          /* webpackChunkName: "PictureToBase64" */ './views/features/string-conversion'
+        ),
+    },
   ],
 });

@@ -32,9 +32,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { readFile } from 'fs';
 import { lookup } from 'mime-types';
+import { from } from 'buffer';
+
+type file = {
+  raw: {
+    path: string;
+  };
+};
 
 export default {
   name: 'PictureToBase64',
@@ -46,48 +53,47 @@ export default {
   },
   methods: {
     submitUpload() {},
-    handleChange(file, fileList) {
+    handleChange(file: file) {
       this.readFile(file.raw.path);
     },
-    readFile(path) {
-      readFile(path, (err, data) => {
+    readFile(path: string) {
+      readFile(path, (err: string, data: string) => {
         if (err) {
           return console.error(err);
         }
-        this.base64 = `data:${lookup(path)};base64,${Buffer.from(data).toString(
+        this.base64 = `data:${lookup(path)};base64,${from(data).toString(
           'base64',
         )}`;
       });
     },
     getContainer() {
-      var $copy = document.getElementById('$XECopy');
+      var $copy: HTMLInputElement = document.getElementById(
+        '$XECopy',
+      ) as HTMLInputElement;
       if (!$copy) {
         $copy = document.createElement('input');
         $copy.id = '$XECopy';
         $copy.style['width'] = '48px';
         $copy.style['height'] = '12px';
         $copy.style['position'] = 'fixed';
-        $copy.style['z-index'] = '0';
+        $copy.style.zIndex = '0';
         $copy.style['left'] = '-500px';
         $copy.style['top'] = '-500px';
         document.body.appendChild($copy);
       }
       return $copy;
     },
-    clipboard(content) {
+    clipboard(content: string) {
       var $copy = this.getContainer();
       var value = content === null || content === undefined ? '' : '' + content;
       try {
         $copy.value = value;
         $copy.focus();
         $copy.setSelectionRange(0, value.length);
-        this.$notify({
-          title: 'Copy成功!',
-          type: 'success',
-        });
+        this.$notify.success('Copy成功!');
         return document.execCommand('copy', true);
       } catch (e) {
-        global.console.error(e);
+        console.error(e);
       }
       return false;
     },
