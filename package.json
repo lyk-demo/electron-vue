@@ -13,8 +13,10 @@
     "postuninstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "buffer": "^5.2.1",
     "core-js": "^2.6.5",
     "element-ui": "^2.3.6",
+    "fs": "^0.0.1-security",
     "mime-types": "^2.1.24",
     "normalize.css": "^8.0.1",
     "vue": "^2.6.10",

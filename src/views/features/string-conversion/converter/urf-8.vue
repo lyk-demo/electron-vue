@@ -10,8 +10,7 @@ export default mixins(Base).extend({
         return this.textToUtf8(this.text);
       },
       set(val: string) {
-        let text = this.utf8ToText(val);
-        this.$emit('update:text', text);
+        this.utf8ToText(val);
       },
     },
   },
@@ -32,9 +31,16 @@ export default mixins(Base).extend({
       return JSON.stringify(codeList);
     },
     utf8ToText(utf8: string) {
-      let codeList: number[] = JSON.parse(utf8);
-      let code = codeList.map(item => '%' + item.toString(16)).join('');
-      return decodeURIComponent(code);
+      this.isError = false;
+      try {
+        let codeList: number[] = JSON.parse(utf8);
+        let code = codeList.map(item => '%' + item.toString(16)).join('');
+        let text = decodeURIComponent(code);
+        this.$emit('update:text', text);
+      } catch (error) {
+        this.isError = true;
+        global.console.error(error);
+      }
     },
   },
 });

@@ -7,8 +7,8 @@ declare module '*.vue' {
 declare module 'element-ui/lib/locale/lang/en';
 declare module 'element-ui/lib/locale/lang/zh-CN';
 declare module 'mime-types';
-declare module 'fs';
-declare module 'buffer';
+// declare module 'fs';
+// declare module 'buffer';
 
 type PluginFunction<T> = (Vue: any, options?: T) => void;
 

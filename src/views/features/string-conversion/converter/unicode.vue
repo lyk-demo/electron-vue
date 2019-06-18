@@ -7,11 +7,13 @@ export default mixins(Base).extend({
   computed: {
     value: {
       get(): string {
-        return this.textToUnicode(this.text);
+        console.info(this.isError, this.val, this.text);
+        return this.isError ? this.val : this.textToUnicode(this.text);
       },
       set(val: string) {
-        let text = this.unicodeToText(val);
-        this.$emit('update:text', text);
+        this.val = val;
+        console.info(val);
+        this.unicodeToText(val);
       },
     },
   },
@@ -23,13 +25,26 @@ export default mixins(Base).extend({
   methods: {
     textToUnicode(text: string) {
       let unicode = Object.values(text).reduce(
-        (str, code) => str + '\\u' + code.charCodeAt(0).toString(16),
+        (str, code) =>
+          str +
+          '\\u' +
+          code
+            .charCodeAt(0)
+            .toString(16)
+            .padStart(4, '0'),
         '',
       );
       return unicode;
     },
     unicodeToText(unicode: string) {
-      return new Function(`return '${unicode}'`)();
+      this.isError = false;
+      try {
+        let text = new Function(`return '${unicode}'`)();
+        this.$emit('update:text', text);
+      } catch (error) {
+        this.isError = true;
+        global.console.error(error);
+      }
     },
   },
 });

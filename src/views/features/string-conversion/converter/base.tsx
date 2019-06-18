@@ -19,6 +19,8 @@ export default Vue.extend({
   data() {
     return {
       name: '',
+      isError: false,
+      val: '',
     };
   },
   methods: {
@@ -55,11 +57,13 @@ export default Vue.extend({
     },
   },
   render(createElement, hack) {
+    let className = this.isError ? 'error' : '';
     return (
       <li class="base">
         <el-tag>{this.name}</el-tag>
         <el-input
           value={this.value}
+          class={className}
           onInput={(val: string) => (this.value = val)}
         />
         <el-button

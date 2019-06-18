@@ -99,3 +99,13 @@ export default Vue.extend({
   }
 }
 </style>
+
+<style lang="less">
+.string-conversion {
+  .el-input.error {
+    .el-input__inner {
+      border-color: #f56c6c;
+    }
+  }
+}
+</style>

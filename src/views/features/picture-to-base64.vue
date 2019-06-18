@@ -34,9 +34,9 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { readFile } from 'fs';
+import fs from 'fs';
 import { lookup } from 'mime-types';
-import buffer from 'buffer';
+// import buffer from 'buffer';
 
 type file = {
   raw: {
@@ -58,13 +58,13 @@ export default Vue.extend({
       this.readFile(file.raw.path);
     },
     readFile(path: string) {
-      readFile(path, (err: string, data: any) => {
+      fs.readFile(path, (err, data: Buffer) => {
         if (err) {
           return console.error(err);
         }
-        this.base64 = `data:${lookup(path)};base64,${buffer.Buffer.from(
-          data,
-        ).toString('base64')}`;
+        this.base64 = `data:${lookup(path)};base64,${Buffer.from(data).toString(
+          'base64',
+        )}`;
       });
     },
     getContainer() {
