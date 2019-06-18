@@ -6,7 +6,7 @@
     @select="handleSelect"
   >
     <el-menu-item index="PictureToBase64">
-      <i class="el-icon-menu" />
+      <i class="el-icon-picture" />
       <span slot="title">图片转base64</span>
     </el-menu-item>
     <el-menu-item index="StringConversion">

@@ -7,10 +7,21 @@ export default mixins(Base).extend({
   computed: {
     value: {
       get(): string {
-        return encodeURI(this.text);
+        if (this.isError) {
+          return this.val;
+        } else {
+          this.isError = false;
+          return encodeURI(this.text);
+        }
       },
       set(val: string) {
-        this.$emit('update:text', decodeURI(val));
+        this.isError = false;
+        this.val = val;
+        try {
+          this.$emit('update:text', decodeURI(val));
+        } catch (error) {
+          this.isError = true;
+        }
       },
     },
   },

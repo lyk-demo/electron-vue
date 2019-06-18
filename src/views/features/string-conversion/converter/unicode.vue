@@ -7,12 +7,12 @@ export default mixins(Base).extend({
   computed: {
     value: {
       get(): string {
-        console.info(this.isError, this.val, this.text);
+        // console.info(this.isError, this.val, this.text);
         return this.isError ? this.val : this.textToUnicode(this.text);
       },
       set(val: string) {
         this.val = val;
-        console.info(val);
+        // console.info(val);
         this.unicodeToText(val);
       },
     },
@@ -24,6 +24,7 @@ export default mixins(Base).extend({
   },
   methods: {
     textToUnicode(text: string) {
+      this.isError = false;
       let unicode = Object.values(text).reduce(
         (str, code) =>
           str +
