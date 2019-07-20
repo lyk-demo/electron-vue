@@ -1,13 +1,6 @@
 'use strict';
 
-import {
-  app,
-  protocol,
-  BrowserWindow,
-  Tray,
-  Menu,
-  NativeImage,
-} from 'electron';
+import { app, protocol, BrowserWindow, Tray, Menu } from 'electron';
 import path from 'path';
 import {
   createProtocol,
@@ -58,16 +51,20 @@ function createWindow() {
 }
 
 let tray;
+
 function initTrayIcon() {
-  tray = new Tray(path.join(process.cwd(), 'public/favicon.ico'));
-  // const tray = new Tray(path.join(process.cwd(), 'src/assets/icon.png'))
-  // const tray = new Tray(path.join(process.resourcesPath, 'public/favicon.ico'))
+  tray = new Tray(path.join(__static, 'favicon.ico'));
 
   const trayContextMenu = Menu.buildFromTemplate([
     {
       label: '退出',
       click: () => {
+        // 只触发closed事件
         win.destroy();
+
+        // 关闭所有窗口，依次触发 before-quit >  will-quit > beforeunload > unload
+        // 经过试验，调用此方法才会结束后台进程
+        app.quit();
       },
     },
   ]);
