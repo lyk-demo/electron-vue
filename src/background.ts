@@ -17,7 +17,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win;
+let win: BrowserWindow;
 
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
@@ -47,27 +47,27 @@ function createWindow() {
     win.loadURL('app://./index.html');
   }
 
+  win.on('close', e => {
+    e.preventDefault();
+    win.hide();
+  });
+
   win.on('closed', () => {
     win = null;
   });
 }
 
+let tray;
 function initTrayIcon() {
-  const tray = new Tray(path.join(process.cwd(), 'public/favicon.ico'));
+  tray = new Tray(path.join(process.cwd(), 'public/favicon.ico'));
   // const tray = new Tray(path.join(process.cwd(), 'src/assets/icon.png'))
   // const tray = new Tray(path.join(process.resourcesPath, 'public/favicon.ico'))
 
   const trayContextMenu = Menu.buildFromTemplate([
     {
-      label: '打开',
-      click: () => {
-        // win.show()
-      },
-    },
-    {
       label: '退出',
       click: () => {
-        win.webContents.send(app.quit, 'quit');
+        win.destroy();
       },
     },
   ]);
@@ -95,7 +95,7 @@ app.on('activate', () => {
   // dock icon is clicked and there are no other windows open.
   if (win === null) {
     createWindow();
-    // initTrayIcon()
+    initTrayIcon();
   }
 });
 
